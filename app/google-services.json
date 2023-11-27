@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "148384264431",
+    "project_id": "affem-cbe93",
+    "storage_bucket": "affem-cbe93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148384264431:android:1dd02a8c713a0957046b1a",
+        "android_client_info": {
+          "package_name": "com.example.affem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5wnX0jlAsf7_8IOgWGj9tblbVU-XkAX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

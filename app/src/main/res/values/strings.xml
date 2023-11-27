@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AFFEM</string>
+    <string name="task_text">Введите данные оборудования</string>
+</resources>
