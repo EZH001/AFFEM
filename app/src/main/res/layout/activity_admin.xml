@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".AdminActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/BackOA"
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="128dp"
             android:layout_height="match_parent"
@@ -64,7 +64,6 @@
         android:text="Button" />
 
     <Button
-        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

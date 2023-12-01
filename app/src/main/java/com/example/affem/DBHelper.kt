@@ -1,12 +1,18 @@
 package com.example.affem
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import kotlin.properties.Delegates
 
 
 class DBHelper(context: Context) :
@@ -14,22 +20,76 @@ class DBHelper(context: Context) :
     companion object {
         private const val DB_NAME = "MainDb.db"
         private var DB_PATH = ""
-        private const val DB_VERSION = 1
+        private const val DB_VERSION = 10
+        const val TABLE_NAME: String = "users"
+        const val COLUMN_ID: String = "_id"
+        const val COLUMN_LOGIN: String = "login"
+        const val COLUMN_PASSWORD: String = "password"
+        const val COLUMN_ROLE: String = "role"
+        const val TABLE_NAME1: String = "equipment"
+        const val COLUMN_TITLE: String = "title"
+        private const val CREATE_TABLE_NEW =
+            "CREATE TABLE $TABLE_NAME1 (" +
+                    "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                    "$COLUMN_TITLE TEXT NOT NULL);"
+
     }
+
     private var mDataBase: SQLiteDatabase? = null
+    private var mContext: Context? = null
     private var mNeedUpdate = false
 
-    private fun checkDataBase(): Boolean {
-        val dbFile = File(DB_PATH + DB_NAME)
-        return dbFile.exists()
-    }
 
+    fun DatabaseHelper(context: Context) {
+
+        DB_PATH =
+            if (Build.VERSION.SDK_INT >= 17) context.applicationInfo.dataDir + "/databases/" else "/data/data/" + context.packageName + "/databases/"
+        mContext = context
+        copyDataBase()
+        this.readableDatabase
+    }
 
     @Throws(SQLException::class)
     fun openDataBase(): Boolean {
         mDataBase =
             SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.CREATE_IF_NECESSARY)
         return mDataBase != null
+    }
+    private fun copyDataBase() {
+        if (!checkDataBase()) {
+            this.readableDatabase
+            close()
+            try {
+                copyDBFile()
+            } catch (mIOException: IOException) {
+                throw Error("ErrorCopyingDataBase")
+            }
+        }
+    }
+    private fun checkDataBase(): Boolean {
+        val dbFile = File(DB_PATH + DB_NAME)
+        return dbFile.exists()
+    }
+
+//    @Throws(IOException::class)
+//    fun updateDataBase() {
+//        if (mNeedUpdate) {
+//            val dbFile = File(DB_PATH + DB_NAME)
+//            if (dbFile.exists()) dbFile.delete()
+//            copyDataBase()
+//            mNeedUpdate = false
+//        }
+//    }
+    @Throws(IOException::class)
+    private fun copyDBFile() {
+        val mInput = mContext!!.assets.open(DB_NAME)
+        val mOutput: OutputStream = FileOutputStream(DB_PATH + DB_NAME)
+        val mBuffer = ByteArray(1024)
+        var mLength: Int
+        while (mInput.read(mBuffer).also { mLength = it } > 0) mOutput.write(mBuffer, 0, mLength)
+        mOutput.flush()
+        mOutput.close()
+        mInput.close()
     }
 
     @Synchronized
@@ -39,36 +99,93 @@ class DBHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-
-    }
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        if (newVersion > oldVersion) mNeedUpdate = true
+        //db.execSQL(CREATE_TABLE_NEW)
     }
 
-
-    @SuppressLint("Recycle")
-    fun CheckUser(login: String, password: String): Boolean {
-        val MyDB = this.writableDatabase
-        val cursor = MyDB.rawQuery("Select * from users where login = ? and password = ?", arrayOf(login, password))
-        return cursor.count > 0
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        if (oldVersion < 10) {
+            // Добавьте изменения схемы, связанные с новой версией
+            db!!.execSQL(CREATE_TABLE_NEW)
+        }
     }
 
     @SuppressLint("Recycle")
-    fun CheckRole1(login: String, password: String): Boolean{
-        val MyDb = this.writableDatabase
-//        val cursor = MyDb.rawQuery("Select *, 'admin' As role from users", arrayOf(role))
-        val cursor: Cursor = MyDb.query(
-            "users", arrayOf<String>("login", "password"),
-            "role = ?", arrayOf<String>("admin"),
-            null, null, null
+    fun userExist(login: String, password: String): Boolean {
+        val db = writableDatabase
+        val cursor = db.rawQuery(
+            "Select * from users where login = ? and password = ?",
+            arrayOf(login, password)
         )
         return cursor.count > 0
     }
-    fun CheckRole(): String?{
-        val MyDb = this.writableDatabase
-        var role: String? = null
-        val query: Cursor = MyDb.rawQuery("SELECT * FROM users", null)
-            role = query.getString(3)
+
+    @SuppressLint("Recycle")
+    fun getRoleByLogin(login: String): String {
+        var role by Delegates.notNull<String>()
+        val db = writableDatabase
+        db.use { db ->
+            val selectQuery = "SELECT $COLUMN_ROLE FROM $TABLE_NAME WHERE $COLUMN_LOGIN = ?"
+            val cursor: Cursor = db.rawQuery(selectQuery, arrayOf(login))
+            if (cursor.moveToFirst()) {
+                role = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ROLE))
+            }
+        }
         return role
     }
-}
+
+    @SuppressLint("Range")
+    fun getDataFromDatabase(): ArrayList<ItemsViewModel> {
+        val dataList: ArrayList<ItemsViewModel> = ArrayList()
+        val selectQuery = "SELECT * FROM equipment"
+        val db = readableDatabase
+        val cursor: Cursor?
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var id: Int
+        var title: String
+        if (cursor.moveToFirst()){
+            do {
+                id = cursor.getInt(cursor.getColumnIndex("_id"))
+                title = cursor.getString(cursor.getColumnIndex("title"))
+                val item = ItemsViewModel(id = id, title = title)
+                dataList.add(item)
+            }while (cursor.moveToNext())
+        }
+        return dataList
+        }
+    fun insertData(title: String) {
+        val values = ContentValues().apply {
+            put(COLUMN_TITLE, title)
+        }
+
+        val db = writableDatabase
+        try {
+            db.insert(TABLE_NAME1, null, values)
+        } catch (e: Exception) {
+            // Обработка ошибок при вставке данных
+            e.printStackTrace()
+        } finally {
+            db.close()
+        }
+    }
+
+    fun clearTable(tableName: String) {
+        val db = writableDatabase
+        try {
+            // Удаляем все строки из указанной таблицы
+            db.delete(tableName, null, null)
+        } catch (e: Exception) {
+            // Обработка ошибок при удалении данных
+            e.printStackTrace()
+        } finally {
+            db.close()
+        }
+    }
+    }
+
