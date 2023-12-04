@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.affem.databinding.ActivityMainBinding
-import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,8 +24,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //val assetCopier = AssetCopier(applicationContext, "MainDb.db", "MainDb.db")
         mDBHelper = DBHelper(this)
-
+//
 //        try {
 //            mDBHelper!!.updateDataBase()
 //        } catch (mIOException: IOException) {

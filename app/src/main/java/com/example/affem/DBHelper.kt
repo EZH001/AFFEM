@@ -32,29 +32,12 @@ class DBHelper(context: Context) :
             "CREATE TABLE $TABLE_NAME1 (" +
                     "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     "$COLUMN_TITLE TEXT NOT NULL);"
-
     }
 
     private var mDataBase: SQLiteDatabase? = null
     private var mContext: Context? = null
     private var mNeedUpdate = false
 
-
-    fun DatabaseHelper(context: Context) {
-
-        DB_PATH =
-            if (Build.VERSION.SDK_INT >= 17) context.applicationInfo.dataDir + "/databases/" else "/data/data/" + context.packageName + "/databases/"
-        mContext = context
-        copyDataBase()
-        this.readableDatabase
-    }
-
-    @Throws(SQLException::class)
-    fun openDataBase(): Boolean {
-        mDataBase =
-            SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.CREATE_IF_NECESSARY)
-        return mDataBase != null
-    }
     private fun copyDataBase() {
         if (!checkDataBase()) {
             this.readableDatabase
@@ -163,7 +146,6 @@ class DBHelper(context: Context) :
         val values = ContentValues().apply {
             put(COLUMN_TITLE, title)
         }
-
         val db = writableDatabase
         try {
             db.insert(TABLE_NAME1, null, values)
@@ -186,6 +168,14 @@ class DBHelper(context: Context) :
         } finally {
             db.close()
         }
+    }
+
+    fun addEquip(title: String){
+        val values = ContentValues()
+        values.put(COLUMN_TITLE, title)
+        val db = writableDatabase
+        db.insert(TABLE_NAME1,null, values)
+        db.close()
     }
     }
 

@@ -13,7 +13,6 @@ class OperatorActivity : AppCompatActivity() {
         private var mDBHelper: DBHelper? = null
         @SuppressLint("StaticFieldLeak")
         lateinit var binding: ActivityOperator1Binding
-        lateinit var equipLists: ArrayList<ItemsViewModel>
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

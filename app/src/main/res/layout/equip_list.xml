@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Id" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -50,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Title" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -59,6 +61,13 @@
             android:orientation="vertical">
 
             <CheckBox
+                android:id="@+id/checkBoxList1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Неполадка" />
+
+            <CheckBox
                 android:id="@+id/checkBoxList2"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -66,40 +75,56 @@
                 android:text="Неполадка" />
 
             <CheckBox
-                android:id="@+id/checkBoxList"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="Неполадка" />
-
-            <CheckBox
-                android:id="@+id/checkBox7"
+                android:id="@+id/checkBoxList3"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="CheckBox" />
 
             <CheckBox
-                android:id="@+id/checkBox8"
+                android:id="@+id/checkBoxList4"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="CheckBox" />
 
             <CheckBox
-                android:id="@+id/checkBox9"
+                android:id="@+id/checkBoxList5"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="CheckBox" />
 
             <CheckBox
-                android:id="@+id/checkBox10"
+                android:id="@+id/checkBoxList6"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="CheckBox" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/enableBtn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100dp"
+                android:layout_weight="1"
+                android:text="@string/enabled" />
+
+            <Button
+                android:id="@+id/disBtn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/disabled" />
         </LinearLayout>
 
         <LinearLayout
