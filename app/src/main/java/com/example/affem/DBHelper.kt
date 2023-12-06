@@ -131,20 +131,39 @@ class DBHelper(context: Context) :
             return ArrayList()
         }
         var id: Int
-        var title: String
+        var malf1: String
+        var malf2: String?
+        var malf3: String?
+        var malf4: String?
+        var malf5: String?
+        var malf6: String?
+        var title: String?
         if (cursor.moveToFirst()){
             do {
                 id = cursor.getInt(cursor.getColumnIndex("_id"))
                 title = cursor.getString(cursor.getColumnIndex("title"))
-                val item = ItemsViewModel(id = id, title = title)
+                malf1 = cursor.getString(cursor.getColumnIndex("malf1"))
+                malf2 = cursor.getString(cursor.getColumnIndex("malf2"))
+                malf3 = cursor.getString(cursor.getColumnIndex("malf3"))
+                malf4 = cursor.getString(cursor.getColumnIndex("malf4"))
+                malf5 = cursor.getString(cursor.getColumnIndex("malf5"))
+                malf6 = cursor.getString(cursor.getColumnIndex("malf6"))
+                val item = ItemsViewModel(id = id, title = title, malf1 = malf1, malf2 = malf2, malf3 = malf3,
+                    malf4 = malf4, malf5 = malf5, malf6 = malf6)
                 dataList.add(item)
             }while (cursor.moveToNext())
         }
         return dataList
         }
-    fun insertData(title: String) {
+    fun insertData(title: String, malf1: String,malf2: String, malf3: String,malf4: String,malf5: String,malf6: String) {
         val values = ContentValues().apply {
             put(COLUMN_TITLE, title)
+            put("malf1", malf1)
+            put("malf2", malf2)
+            put("malf3", malf3)
+            put("malf4", malf4)
+            put("malf5", malf5)
+            put("malf6", malf6)
         }
         val db = writableDatabase
         try {

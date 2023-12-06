@@ -56,6 +56,61 @@
         android:inputType="text"
         android:hint="Название оборудования" />
 
+    <EditText
+        android:id="@+id/mafl1AA"
+        android:layout_width="251dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Название неполадки"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/mafl2AA"
+        android:layout_width="350dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Название неполадки(необязательно)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/mafl3AA"
+        android:layout_width="350dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Название неполадки(необязательно)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/mafl4AA"
+        android:layout_width="350dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Название неполадки(необязательно)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/mafl5AA"
+        android:layout_width="350dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Название неполадки(необязательно)"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/mafl6AA"
+        android:layout_width="350dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Название неполадки(необязательно)"
+        android:inputType="text" />
+
     <Button
         android:id="@+id/addBtn"
         android:layout_width="wrap_content"
@@ -69,6 +124,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
         android:text="@string/go_to_op" />
 </LinearLayout>

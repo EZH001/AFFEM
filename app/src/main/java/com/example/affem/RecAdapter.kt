@@ -35,6 +35,27 @@ class RecAdapter: RecyclerView.Adapter<RecAdapter.ViewHolder>() {
         fun bind(itemsViewModel: ItemsViewModel){
             binding.equipIdL.text = itemsViewModel.id.toString()
             binding.TitleList.text = itemsViewModel.title
+            binding.checkBoxList1.text = itemsViewModel.malf1
+            if (itemsViewModel.malf2 == null)   binding.checkBoxList2.visibility = View.GONE
+            else binding.checkBoxList2.text = itemsViewModel.malf2
+            if (itemsViewModel.malf3 == null)   binding.checkBoxList3.visibility = View.GONE
+            else binding.checkBoxList3.text = itemsViewModel.malf3
+            if (itemsViewModel.malf4 == null)   binding.checkBoxList4.visibility = View.GONE
+            else binding.checkBoxList4.text = itemsViewModel.malf4
+            if (itemsViewModel.malf5 == null)   binding.checkBoxList5.visibility = View.GONE
+            else binding.checkBoxList5.text = itemsViewModel.malf5
+            if (itemsViewModel.malf6 == null)   binding.checkBoxList6.visibility = View.GONE
+            else binding.checkBoxList6.text = itemsViewModel.malf6
+            if (itemsViewModel.malf2 == "")   binding.checkBoxList2.visibility = View.GONE
+            else binding.checkBoxList2.text = itemsViewModel.malf2
+            if (itemsViewModel.malf3 == "")   binding.checkBoxList3.visibility = View.GONE
+            else binding.checkBoxList3.text = itemsViewModel.malf3
+            if (itemsViewModel.malf4 == "")   binding.checkBoxList4.visibility = View.GONE
+            else binding.checkBoxList4.text = itemsViewModel.malf4
+            if (itemsViewModel.malf5 == "")   binding.checkBoxList5.visibility = View.GONE
+            else binding.checkBoxList5.text = itemsViewModel.malf5
+            if (itemsViewModel.malf6 == "")   binding.checkBoxList6.visibility = View.GONE
+            else binding.checkBoxList6.text = itemsViewModel.malf6
             binding.enableBtn.setOnClickListener {
                 binding.checkBoxList1.isEnabled = false
                 binding.checkBoxList2.isEnabled = false

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //val assetCopier = AssetCopier(applicationContext, "MainDb.db", "MainDb.db")
+        val assetCopier = AssetCopier(applicationContext, "MainDb.db", "MainDb.db")
         mDBHelper = DBHelper(this)
 //
 //        try {
