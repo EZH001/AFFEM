@@ -10,6 +10,12 @@ import com.example.affem.databinding.EquipListBinding
 class RecAdapter: RecyclerView.Adapter<RecAdapter.ViewHolder>() {
     var itemsList = ArrayList<ItemsViewModel>()
     private var onClickItem:((ItemsViewModel)->Unit)? = null
+    private var isItemsEnabled = false
+
+    fun setItemsEnabled(enabled: Boolean) {
+        isItemsEnabled = enabled
+        notifyDataSetChanged()
+    }
     fun addItems(items: ArrayList<ItemsViewModel>){
         itemsList = items
         notifyDataSetChanged()
@@ -21,6 +27,7 @@ class RecAdapter: RecyclerView.Adapter<RecAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: RecAdapter.ViewHolder, position: Int) {
         val items = itemsList[position]
         holder.bind(items)
+        holder.enableCheckBoxes(isItemsEnabled)
         holder.itemView.setOnClickListener {
             onClickItem?.invoke(items)
         }
@@ -56,7 +63,26 @@ class RecAdapter: RecyclerView.Adapter<RecAdapter.ViewHolder>() {
             else binding.checkBoxList5.text = itemsViewModel.malf5
             if (itemsViewModel.malf6 == "")   binding.checkBoxList6.visibility = View.GONE
             else binding.checkBoxList6.text = itemsViewModel.malf6
-            binding.enableBtn.setOnClickListener {
+            binding.checkBoxList1.isChecked = itemsViewModel.status1.toBoolean()
+            binding.checkBoxList2.isChecked = itemsViewModel.status2.toBoolean()
+            binding.checkBoxList3.isChecked = itemsViewModel.status3.toBoolean()
+            binding.checkBoxList4.isChecked = itemsViewModel.status4.toBoolean()
+            binding.checkBoxList5.isChecked = itemsViewModel.status5.toBoolean()
+            binding.checkBoxList5.isChecked = itemsViewModel.status6.toBoolean()
+
+        }
+        fun enableCheckBoxes(enabled: Boolean) {
+            binding.checkBoxList1.isEnabled = enabled
+            binding.checkBoxList2.isEnabled = enabled
+            binding.checkBoxList3.isEnabled = enabled
+            binding.checkBoxList4.isEnabled = enabled
+            binding.checkBoxList5.isEnabled = enabled
+            binding.checkBoxList6.isEnabled = enabled
+            // ... включите или выключите остальные чекбоксы
+        }
+    }
+}
+/*binding.enableBtn.setOnClickListener {
                 binding.checkBoxList1.isEnabled = false
                 binding.checkBoxList2.isEnabled = false
                 binding.checkBoxList3.isEnabled = false
@@ -71,9 +97,4 @@ class RecAdapter: RecyclerView.Adapter<RecAdapter.ViewHolder>() {
                 binding.checkBoxList4.isEnabled = true
                 binding.checkBoxList5.isEnabled = true
                 binding.checkBoxList6.isEnabled = true
-            }
-
-        }
-    }
-
-}
+            }*/

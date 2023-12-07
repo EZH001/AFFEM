@@ -138,18 +138,30 @@ class DBHelper(context: Context) :
         var malf5: String?
         var malf6: String?
         var title: String?
+        var status1: String
+        var status2: String
+        var status3: String
+        var status4: String
+        var status5: String
+        var status6: String
         if (cursor.moveToFirst()){
             do {
                 id = cursor.getInt(cursor.getColumnIndex("_id"))
                 title = cursor.getString(cursor.getColumnIndex("title"))
                 malf1 = cursor.getString(cursor.getColumnIndex("malf1"))
+                status1 = cursor.getString(cursor.getColumnIndex("status1"))
                 malf2 = cursor.getString(cursor.getColumnIndex("malf2"))
+                status2 = cursor.getString(cursor.getColumnIndex("status2"))
                 malf3 = cursor.getString(cursor.getColumnIndex("malf3"))
+                status3 = cursor.getString(cursor.getColumnIndex("status3"))
                 malf4 = cursor.getString(cursor.getColumnIndex("malf4"))
+                status4 = cursor.getString(cursor.getColumnIndex("status4"))
                 malf5 = cursor.getString(cursor.getColumnIndex("malf5"))
+                status5 = cursor.getString(cursor.getColumnIndex("status5"))
                 malf6 = cursor.getString(cursor.getColumnIndex("malf6"))
-                val item = ItemsViewModel(id = id, title = title, malf1 = malf1, malf2 = malf2, malf3 = malf3,
-                    malf4 = malf4, malf5 = malf5, malf6 = malf6)
+                status6 = cursor.getString(cursor.getColumnIndex("status6"))
+                val item = ItemsViewModel(id = id, title = title, malf1 = malf1, status1 = status1, malf2 = malf2, status2 = status2, malf3 = malf3,
+                    status3 = status3, malf4 = malf4, status4 = status4, malf5 = malf5,status5 = status5 ,malf6 = malf6, status6 = status6)
                 dataList.add(item)
             }while (cursor.moveToNext())
         }
@@ -159,11 +171,17 @@ class DBHelper(context: Context) :
         val values = ContentValues().apply {
             put(COLUMN_TITLE, title)
             put("malf1", malf1)
+            put("status1", false)
             put("malf2", malf2)
+            put("status2", false)
             put("malf3", malf3)
+            put("status3", false)
             put("malf4", malf4)
+            put("status4", false)
             put("malf5", malf5)
+            put("status5", false)
             put("malf6", malf6)
+            put("status6", false)
         }
         val db = writableDatabase
         try {
@@ -189,12 +207,5 @@ class DBHelper(context: Context) :
         }
     }
 
-    fun addEquip(title: String){
-        val values = ContentValues()
-        values.put(COLUMN_TITLE, title)
-        val db = writableDatabase
-        db.insert(TABLE_NAME1,null, values)
-        db.close()
-    }
     }
 
