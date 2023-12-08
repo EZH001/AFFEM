@@ -19,8 +19,9 @@ class OperatorActivity : AppCompatActivity() {
         @SuppressLint("StaticFieldLeak")
         lateinit var binding: ActivityOperator1Binding
     }
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @SuppressLint("NotifyDataSetChanged")
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOperator1Binding.inflate(layoutInflater)

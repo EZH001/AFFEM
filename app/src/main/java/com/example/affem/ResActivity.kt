@@ -29,8 +29,9 @@ class ResActivity : AppCompatActivity() {
     }
 
     private fun getEquip(){
-        val dataList =  recAdapter!!.loadDataFromFile(this, "08-12-23.txt")
+        val dataList =  recAdapter!!.loadDataFromTextFile(this)
         recAdapter?.addItems(dataList)
+        recAdapter!!.updateData(dataList)
     }
 
 }

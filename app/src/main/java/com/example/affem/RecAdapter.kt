@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.affem.databinding.EquipListBinding
+import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.File
+import java.io.FileOutputStream
 import java.io.FileWriter
 import java.io.IOException
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -39,27 +43,39 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
         holder.bind(items)
         holder.enableCheckBoxes(isItemsEnabled)
 
-        holder.binding.checkBoxList1.isChecked = items.isChecked1
+        holder.binding.checkBoxList1.post {
+            holder.binding.checkBoxList1.isChecked = items.isChecked1
+        }
         holder.binding.checkBoxList1.setOnCheckedChangeListener { _, isChecked ->
             items.updateCheckBoxStatus(1, isChecked)
         }
-        holder.binding.checkBoxList2.isChecked = items.isChecked2
+        holder.binding.checkBoxList2.post {
+            holder.binding.checkBoxList2.isChecked = items.isChecked2
+        }
         holder.binding.checkBoxList2.setOnCheckedChangeListener { _, isChecked ->
             items.updateCheckBoxStatus(2, isChecked)
         }
-        holder.binding.checkBoxList3.isChecked = items.isChecked3
+        holder.binding.checkBoxList3.post {
+            holder.binding.checkBoxList3.isChecked = items.isChecked3
+        }
         holder.binding.checkBoxList3.setOnCheckedChangeListener { _, isChecked ->
             items.updateCheckBoxStatus(3, isChecked)
         }
-        holder.binding.checkBoxList4.isChecked = items.isChecked4
+        holder.binding.checkBoxList4.post {
+            holder.binding.checkBoxList4.isChecked = items.isChecked4
+        }
         holder.binding.checkBoxList4.setOnCheckedChangeListener { _, isChecked ->
             items.updateCheckBoxStatus(4, isChecked)
         }
-        holder.binding.checkBoxList5.isChecked = items.isChecked5
+        holder.binding.checkBoxList5.post {
+            holder.binding.checkBoxList5.isChecked = items.isChecked5
+        }
         holder.binding.checkBoxList5.setOnCheckedChangeListener { _, isChecked ->
             items.updateCheckBoxStatus(5, isChecked)
         }
-        holder.binding.checkBoxList6.isChecked = items.isChecked6
+        holder.binding.checkBoxList6.post {
+            holder.binding.checkBoxList6.isChecked = items.isChecked6
+        }
         holder.binding.checkBoxList6.setOnCheckedChangeListener { _, isChecked ->
             items.updateCheckBoxStatus(6, isChecked)
         }
@@ -81,15 +97,15 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
             binding.equipIdL.text = itemsViewModel.id.toString()
             binding.TitleList.text = itemsViewModel.title
             binding.checkBoxList1.text = itemsViewModel.malf1
-            if (itemsViewModel.malf2 == null || itemsViewModel.malf2 == "" || itemsViewModel.malf2 == "null") binding.checkBoxList2.visibility = View.GONE
+            if (itemsViewModel.malf2 == null || itemsViewModel.malf2 == "" || itemsViewModel.malf2 == "null" || itemsViewModel.malf2 == "null1") binding.checkBoxList2.visibility = View.GONE
             else binding.checkBoxList2.text = itemsViewModel.malf2
-            if (itemsViewModel.malf3 == null || itemsViewModel.malf3 == "" || itemsViewModel.malf3 == "null") binding.checkBoxList3.visibility = View.GONE
+            if (itemsViewModel.malf3 == null || itemsViewModel.malf3 == "" || itemsViewModel.malf3 == "null" || itemsViewModel.malf3 == "null1") binding.checkBoxList3.visibility = View.GONE
             else binding.checkBoxList3.text = itemsViewModel.malf3
-            if (itemsViewModel.malf4 == null || itemsViewModel.malf4 == "" || itemsViewModel.malf4 == "null") binding.checkBoxList4.visibility = View.GONE
+            if (itemsViewModel.malf4 == null || itemsViewModel.malf4 == "" || itemsViewModel.malf4 == "null" || itemsViewModel.malf4 == "null1") binding.checkBoxList4.visibility = View.GONE
             else binding.checkBoxList4.text = itemsViewModel.malf4
-            if (itemsViewModel.malf5 == null || itemsViewModel.malf5 == "" || itemsViewModel.malf5.trim() == "null") binding.checkBoxList5.visibility = View.GONE
+            if (itemsViewModel.malf5 == null || itemsViewModel.malf5 == "" || itemsViewModel.malf5 == "null" || itemsViewModel.malf5 == "null1") binding.checkBoxList5.visibility = View.GONE
             else binding.checkBoxList5.text = itemsViewModel.malf5
-            if (itemsViewModel.malf6 == null || itemsViewModel.malf6 == "" || itemsViewModel.malf6 == "null") binding.checkBoxList6.visibility = View.GONE
+            if (itemsViewModel.malf6 == null || itemsViewModel.malf6 == "" || itemsViewModel.malf6 == "null" || itemsViewModel.malf6 == "null1") binding.checkBoxList6.visibility = View.GONE
             else binding.checkBoxList6.text = itemsViewModel.malf6
         }
 
@@ -103,84 +119,84 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
             // ... включите или выключите остальные чекбоксы
         }
     }
-    @RequiresApi(Build.VERSION_CODES.O)
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun saveDataToTextFile(context: Context, dataList: ArrayList<ItemsViewModel>) {
         val fileName = getCurrentDate()
+
         try {
-            val file = File(context.filesDir, "$fileName.txt")
-            val writer = FileWriter(file)
-            val bufferedWriter = BufferedWriter(writer)
-
-            for (data in dataList) {
-                val line = "${data.id}, ${data.title}, ${data.malf1}, ${if (data.isChecked1) "true" else "false"}," +
-                        "${data.malf2}, ${if (data.isChecked2) "true" else "false"}, ${data.malf3}, ${if (data.isChecked3) "true" else "false"}," +
-                        "${data.malf4}, ${if (data.isChecked4) "true" else "false"}, ${data.malf5}, ${if (data.isChecked5) "true" else "false"}," +
-                        "${data.malf6}, ${if (data.isChecked6) "true" else "false"}"
-                bufferedWriter.write(line)
-                bufferedWriter.newLine()
+            BufferedWriter(
+                OutputStreamWriter(
+                    context.openFileOutput("$fileName.txt", Context.MODE_PRIVATE),
+                    Charsets.UTF_8
+                )
+            ).use { bufferedWriter ->
+                for (data in dataList) {
+                    val line =
+                        "${data.id}, ${data.title}, ${data.malf1}, ${data.isChecked1}, " +
+                                "${data.malf2 ?: ""}, ${data.isChecked2}, " +
+                                "${data.malf3 ?: ""}, ${data.isChecked3}, " +
+                                "${data.malf4 ?: ""}, ${data.isChecked4}, " +
+                                "${data.malf5 ?: ""}, ${data.isChecked5}, " +
+                                "${data.malf6 ?: ""}, ${data.isChecked6}"
+                    bufferedWriter.write(line)
+                    bufferedWriter.newLine()
+                }
+                // Добавленная строка для гарантированной записи данных
+                bufferedWriter.flush()
             }
-
-            bufferedWriter.close()
-            writer.close()
         } catch (e: IOException) {
             e.printStackTrace()
+            // Обработка ошибок
         }
     }
 
-    fun loadDataFromFile(context: Context, filePath: String): ArrayList<ItemsViewModel> {
-        val file = File(context.filesDir.absolutePath, filePath)
-        val loadedDataList = ArrayList<ItemsViewModel>()
-
+    fun loadDataFromTextFile(context: Context): ArrayList<ItemsViewModel> {
+        val dataList = ArrayList<ItemsViewModel>()
         try {
-            val lines = file.readLines()
-
-            for (line in lines) {
-                val values = line.split(",")
-
-                // Получение значений состояний чекбоксов
-                val isChecked1 = values[3].trim() == "true"
-                val isChecked2 = values[5].trim() == "true"
-                val isChecked3 = values[7].trim() == "true"
-                val isChecked4 = values[9].trim() == "true"
-                val isChecked5 = values[11].trim() == "true"
-                val isChecked6 = values[13].trim() == "true"
-
-                // Создание объекта ItemsViewModel с учетом состояний чекбоксов
+            val inputStream = context.openFileInput("08-12-23.txt")
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            var line: String?
+            while (reader.readLine().also { line = it } != null) {
+                val values = line!!.split(", ")
                 val item = ItemsViewModel(
-                    values[0].toInt(),
-                    values[1],
-                    values[2],
-                    values[3],
-                    values[4],
-                    values[5],
-                    values[6],
-                    values[7],
-                    values[8],
-                    values[9],
-                    values[10],
-                    values[11],
-                    values[12],
-                    values[13],
-                    isChecked1,
-                    isChecked2,
-                    isChecked3,
-                    isChecked4,
-                    isChecked5,
-                    isChecked6
+                    id = values[0].toInt(),
+                    title = values[1],
+                    malf1 = values[2],
+                    isChecked1 = values[3].toBoolean(),
+                    malf2 = values[4],
+                    isChecked2 = values[5].toBoolean(),
+                    malf3 = values[6],
+                    isChecked3 = values[7].toBoolean(),
+                    malf4 = values[8],
+                    isChecked4 = values[9].toBoolean(),
+                    malf5 = values[10],
+                    isChecked5 = values[11].toBoolean(),
+                    malf6 = values[12],
+                    isChecked6 = values[13].toBoolean()
                 )
-                loadedDataList.add(item)
+                dataList.add(item)
             }
-        } catch (e: Exception) {
+            reader.close()
+        } catch (e: IOException) {
             e.printStackTrace()
+            // Обработка ошибок
         }
+        return dataList
+    }
 
-        return loadedDataList
+    private fun parseBoolean(value: String): Boolean {
+        return value.equals("true", ignoreCase = true)
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun getCurrentDate(): String {
         val currentDate = LocalDate.now()
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yy")
         return currentDate.format(formatter)
+    }
+    fun updateData(newDataList: ArrayList<ItemsViewModel>) {
+        itemsList = newDataList
+        notifyDataSetChanged() // Уведомить RecyclerView об изменениях
     }
     }
 

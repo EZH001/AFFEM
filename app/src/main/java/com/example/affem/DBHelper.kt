@@ -165,17 +165,14 @@ class DBHelper(context: Context) :
         val values = ContentValues().apply {
             put(COLUMN_TITLE, title)
             put("malf1", malf1)
-            put("status1", false)
             put("malf2", malf2)
-            put("status2", false)
             put("malf3", malf3)
-            put("status3", false)
             put("malf4", malf4)
-            put("status4", false)
+
             put("malf5", malf5)
-            put("status5", false)
+
             put("malf6", malf6)
-            put("status6", false)
+
         }
         val db = writableDatabase
         try {
