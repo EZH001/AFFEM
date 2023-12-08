@@ -91,14 +91,6 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
             else binding.checkBoxList5.text = itemsViewModel.malf5
             if (itemsViewModel.malf6 == null || itemsViewModel.malf6 == "" || itemsViewModel.malf6 == "null") binding.checkBoxList6.visibility = View.GONE
             else binding.checkBoxList6.text = itemsViewModel.malf6
-            binding.checkBoxList1.isChecked = itemsViewModel.isChecked1
-            binding.checkBoxList2.isChecked = itemsViewModel.isChecked2
-            binding.checkBoxList3.isChecked = itemsViewModel.isChecked3
-            binding.checkBoxList4.isChecked = itemsViewModel.isChecked4
-            binding.checkBoxList5.isChecked = itemsViewModel.isChecked5
-            binding.checkBoxList5.isChecked = itemsViewModel.isChecked6
-
-
         }
 
         fun enableCheckBoxes(enabled: Boolean) {

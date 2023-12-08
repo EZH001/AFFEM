@@ -19,6 +19,7 @@ class OperatorActivity : AppCompatActivity() {
         @SuppressLint("StaticFieldLeak")
         lateinit var binding: ActivityOperator1Binding
     }
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +37,9 @@ class OperatorActivity : AppCompatActivity() {
         binding.button4.setOnClickListener {
             val dataList = recAdapter!!.itemsList
             recAdapter!!.saveDataToTextFile(this, dataList)
-
             val intent = Intent(this@OperatorActivity, ResActivity::class.java)
             startActivity(intent)
-//            val dataList = recAdapter!!.itemsList // Используйте items, если используете ListAdapter
-//            recAdapter!!.saveDataToTextFile(this, dataList)
-//            val intent = Intent(this@OperatorActivity, ResActivity::class.java)
-//            startActivity(intent)
+
         }
     }
     private fun getEquip(){
