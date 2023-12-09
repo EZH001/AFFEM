@@ -15,26 +15,22 @@
         <ImageButton
             android:id="@+id/BackAA"
             style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="128dp"
-            android:layout_height="match_parent"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_margin="10dp"
-            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:src="@drawable/back" />
-
-        <TextView
-            android:id="@+id/titleAA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageViewAA"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:paddingEnd="40dp"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:src="@drawable/gsb_logo" />
+
 
     </LinearLayout>
 
@@ -43,9 +39,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
+        android:fontFamily="@font/quicksand"
         android:text="@string/task_text"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/titleEquipAA"
@@ -53,8 +51,9 @@
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Название оборудования" />
+        android:fontFamily="@font/quicksand"
+        android:hint="Название оборудования"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/mafl1AA"
@@ -63,6 +62,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Название неполадки"
         android:inputType="text" />
 
@@ -72,6 +72,7 @@
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Название неполадки(необязательно)"
         android:inputType="text" />
 
@@ -81,6 +82,7 @@
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Название неполадки(необязательно)"
         android:inputType="text" />
 
@@ -90,6 +92,7 @@
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Название неполадки(необязательно)"
         android:inputType="text" />
 
@@ -99,6 +102,7 @@
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Название неполадки(необязательно)"
         android:inputType="text" />
 
@@ -108,21 +112,26 @@
         android:layout_height="59dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Название неполадки(необязательно)"
         android:inputType="text" />
 
     <Button
         android:id="@+id/addBtn"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:fontFamily="@font/quicksand"
         android:text="@string/add_data" />
 
     <Button
         android:id="@+id/goBtn"
+        style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/quicksand"
         android:text="@string/go_to_op" />
 </LinearLayout>

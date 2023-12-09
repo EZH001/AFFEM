@@ -1,5 +1,6 @@
 package com.example.affem
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
@@ -10,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.affem.databinding.EquipListBinding
 import java.io.BufferedReader
 import java.io.BufferedWriter
-import java.io.File
-import java.io.FileOutputStream
-import java.io.FileWriter
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
@@ -25,10 +23,12 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
     private var onClickItem:((ItemsViewModel)->Unit)? = null
     private var isItemsEnabled = false
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setItemsEnabled(enabled: Boolean) {
         isItemsEnabled = enabled
         notifyDataSetChanged()
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun addItems(items: ArrayList<ItemsViewModel>){
         itemsList = items
         notifyDataSetChanged()
@@ -151,10 +151,10 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
         }
     }
 
-    fun loadDataFromTextFile(context: Context): ArrayList<ItemsViewModel> {
+    fun loadDataFromTextFile(context: Context, fileName: String): ArrayList<ItemsViewModel> {
         val dataList = ArrayList<ItemsViewModel>()
         try {
-            val inputStream = context.openFileInput("08-12-23.txt")
+            val inputStream = context.openFileInput("$fileName.txt")
             val reader = BufferedReader(InputStreamReader(inputStream))
             var line: String?
             while (reader.readLine().also { line = it } != null) {
@@ -184,19 +184,16 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
         }
         return dataList
     }
-
-    private fun parseBoolean(value: String): Boolean {
-        return value.equals("true", ignoreCase = true)
-    }
     @RequiresApi(Build.VERSION_CODES.O)
     fun getCurrentDate(): String {
         val currentDate = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yy")
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yy")
         return currentDate.format(formatter)
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newDataList: ArrayList<ItemsViewModel>) {
         itemsList = newDataList
-        notifyDataSetChanged() // Уведомить RecyclerView об изменениях
+        notifyDataSetChanged()
     }
     }
 

@@ -15,26 +15,22 @@
         <ImageButton
             android:id="@+id/BackOA"
             style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="128dp"
-            android:layout_height="match_parent"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_margin="10dp"
-            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:src="@drawable/back" />
 
-        <TextView
-            android:id="@+id/titleMA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageViewAA"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:paddingEnd="40dp"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:src="@drawable/gsb_logo" />
 
     </LinearLayout>
 
@@ -42,10 +38,12 @@
         android:id="@+id/taskOA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/quicksand"
         android:text="Окно оператора"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button3"
@@ -53,21 +51,48 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
+        android:fontFamily="@font/quicksand"
         android:text="@string/load_data" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/equipListOA"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:layout_margin="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/button4"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Button" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/quicksand"
+            android:paddingStart="1dp"
+            android:paddingEnd="1dp"
+            android:text="@string/go_to_otchet"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/quicksand"
+            android:text="@string/send"
+            android:visibility="gone" />
+    </LinearLayout>
 
 </LinearLayout>

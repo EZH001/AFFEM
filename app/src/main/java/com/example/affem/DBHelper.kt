@@ -24,7 +24,6 @@ class DBHelper(context: Context) :
         const val TABLE_NAME: String = "users"
         const val COLUMN_ID: String = "_id"
         const val COLUMN_LOGIN: String = "login"
-        const val COLUMN_PASSWORD: String = "password"
         const val COLUMN_ROLE: String = "role"
         const val TABLE_NAME1: String = "equipment"
         const val COLUMN_TITLE: String = "title"
@@ -116,7 +115,7 @@ class DBHelper(context: Context) :
         return role
     }
 
-    @SuppressLint("Range")
+    @SuppressLint("Range", "Recycle")
     fun getDataFromDatabase(): ArrayList<ItemsViewModel> {
         val dataList: ArrayList<ItemsViewModel> = ArrayList()
         val selectQuery = "SELECT * FROM equipment"
@@ -168,11 +167,8 @@ class DBHelper(context: Context) :
             put("malf2", malf2)
             put("malf3", malf3)
             put("malf4", malf4)
-
             put("malf5", malf5)
-
             put("malf6", malf6)
-
         }
         val db = writableDatabase
         try {
@@ -184,19 +180,17 @@ class DBHelper(context: Context) :
             db.close()
         }
     }
-
-    fun clearTable(tableName: String) {
-        val db = writableDatabase
-        try {
-            // Удаляем все строки из указанной таблицы
-            db.delete(tableName, null, null)
-        } catch (e: Exception) {
-            // Обработка ошибок при удалении данных
-            e.printStackTrace()
-        } finally {
-            db.close()
-        }
-    }
-
+//    fun clearTable(tableName: String) {
+//        val db = writableDatabase
+//        try {
+//            // Удаляем все строки из указанной таблицы
+//            db.delete(tableName, null, null)
+//        } catch (e: Exception) {
+//            // Обработка ошибок при удалении данных
+//            e.printStackTrace()
+//        } finally {
+//            db.close()
+//        }
+//    }
     }
 

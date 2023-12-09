@@ -21,13 +21,16 @@
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Id:" />
+                android:fontFamily="@font/quicksand"
+                android:text="Id:"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/equipIdL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="Id" />
 
         </LinearLayout>
@@ -43,13 +46,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Наименование оборудования:" />
+                android:fontFamily="@font/quicksand"
+                android:text="Наименование оборудования:"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TitleList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="Title" />
 
         </LinearLayout>
@@ -65,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="Неполадка" />
 
             <CheckBox
@@ -72,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="Неполадка" />
 
             <CheckBox
@@ -79,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="CheckBox" />
 
             <CheckBox
@@ -86,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="CheckBox" />
 
             <CheckBox
@@ -93,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="CheckBox" />
 
             <CheckBox
@@ -100,6 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/quicksand"
                 android:text="CheckBox" />
 
         </LinearLayout>
@@ -109,23 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/enableBtn"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="100dp"
-                android:layout_weight="1"
-                android:text="@string/enabled" />
-
-            <Button
-                android:id="@+id/disBtn"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/disabled" />
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:layout_width="match_parent"

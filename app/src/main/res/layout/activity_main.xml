@@ -12,25 +12,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/titleMA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:paddingStart="80dp"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:paddingStart="90dp"
+            android:src="@drawable/gsb_logo" />
+
 
         <ImageButton
             android:id="@+id/BackOA"
             style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="128dp"
-            android:layout_height="match_parent"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_margin="10dp"
-            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:src="@drawable/settings" />
 
@@ -41,9 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
+        android:fontFamily="@font/quicksand"
         android:text="Вход"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/loginLA"
@@ -52,6 +51,7 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Логин"
         android:inputType="text" />
 
@@ -59,9 +59,10 @@
         android:id="@+id/passwordLA"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_margin="10dp"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:ems="10"
+        android:fontFamily="@font/quicksand"
         android:hint="Пароль"
         android:inputType="textPassword" />
 
@@ -71,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:fontFamily="@font/quicksand"
         android:onClick="login"
         android:text="@string/sign_in" />
 </LinearLayout>

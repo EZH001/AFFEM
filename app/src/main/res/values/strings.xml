@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AFFEM</string>
+    <string name="app_name">ГЛУМ: Мобильная бригада</string>
     <string name="task_text">Введите данные оборудования</string>
     <string name="sign_in">Войти</string>
     <string name="load_data">Загрузить список оборудования</string>
@@ -7,4 +7,8 @@
     <string name="disabled">Изменить</string>
     <string name="add_data">Добавить в БД</string>
     <string name="go_to_op">Перейти к окну оператора</string>
+    <string name="date">Введите дату отчета, который необходимо просмотреть</string>
+    <string name="search">Найти</string>
+    <string name="send">Сохранить отчет</string>
+    <string name="go_to_otchet">Перейти к окну отчетов</string>
 </resources>

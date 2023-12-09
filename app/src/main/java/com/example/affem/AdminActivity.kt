@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.affem.databinding.ActivityAdminBinding
-import com.example.affem.databinding.ActivityOperator1Binding
 
 class AdminActivity : AppCompatActivity() {
     companion object {
@@ -17,6 +16,7 @@ class AdminActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mDBHelper = DBHelper(this)
@@ -25,7 +25,6 @@ class AdminActivity : AppCompatActivity() {
         }
         binding.addBtn.setOnClickListener {
             val title: String = binding.titleEquipAA.text.toString().trim()
-
             val malf1: String = binding.mafl1AA.text.toString().trim()
             val malf2: String = binding.mafl2AA.text.toString().trim()
             val malf3: String = binding.mafl3AA.text.toString().trim()
@@ -42,6 +41,7 @@ class AdminActivity : AppCompatActivity() {
                 binding.mafl4AA.text = null
                 binding.mafl5AA.text = null
                 binding.mafl6AA.text = null
+                Toast.makeText(this, "Оборудование успешно добавлено", Toast.LENGTH_SHORT).show()
             }
         }
         binding.goBtn.setOnClickListener {

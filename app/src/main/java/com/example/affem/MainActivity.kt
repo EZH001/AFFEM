@@ -15,6 +15,7 @@ import com.example.affem.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     companion object {
+        @SuppressLint("StaticFieldLeak")
         private var mDBHelper: DBHelper? = null
         private var mDb: SQLiteDatabase? = null
         @SuppressLint("StaticFieldLeak")
@@ -22,9 +23,10 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val assetCopier = AssetCopier(applicationContext, "MainDb.db", "MainDb.db")
+        //val assetCopier = AssetCopier(applicationContext, "MainDb.db", "MainDb.db")
         mDBHelper = DBHelper(this)
 //
 //        try {
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         @SuppressLint("SuspiciousIndentation")
         fun login(view: View){
-
         val loginText: TextView = findViewById(R.id.loginLA)
         val passwordText: EditText = findViewById(R.id.passwordLA)
         if (loginText.text.toString() == "" || passwordText.text.toString() == "")
@@ -55,11 +56,11 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Успешно", Toast.LENGTH_SHORT).show()
             val checkRole = mDBHelper!!.getRoleByLogin(login)
                 if (checkRole == "admin"){
-                    val intent: Intent = Intent(this@MainActivity, AdminActivity::class.java)
+                    val intent  = Intent(this@MainActivity, AdminActivity::class.java)
                     startActivity(intent)
                 }
             else {
-                    val intent: Intent = Intent(this@MainActivity, OperatorActivity::class.java)
+                    val intent = Intent(this@MainActivity, OperatorActivity::class.java)
                     startActivity(intent)
             }
         }
