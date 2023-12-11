@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ГЛУМ: Мобильная бригада</string>
+    <string name="app_name">ГЛУЛ: Мобильная бригада</string>
     <string name="task_text">Введите данные оборудования</string>
     <string name="sign_in">Войти</string>
     <string name="load_data">Загрузить список оборудования</string>
