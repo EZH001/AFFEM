@@ -23,13 +23,13 @@
 
 
         <ImageButton
-            android:id="@+id/BackOA"
+            android:id="@+id/InformOA"
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="10dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/settings" />
+            android:src="@drawable/info" />
 
     </LinearLayout>
 

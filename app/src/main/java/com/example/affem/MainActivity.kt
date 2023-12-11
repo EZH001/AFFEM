@@ -40,7 +40,10 @@ class MainActivity : AppCompatActivity() {
         } catch (mSQLException: SQLException) {
             throw mSQLException
         }
-
+        binding.InformOA.setOnClickListener {
+            val intent = Intent(this@MainActivity, AboutActivity::class.java)
+            startActivity(intent)
+        }
     }
 
         @SuppressLint("SuspiciousIndentation")
