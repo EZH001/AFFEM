@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Build
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -54,7 +53,6 @@ class OperatorActivity : AppCompatActivity() {
     }
     private fun getEquip(){
         val dataList = mDBHelper!!.getDataFromDatabase()
-        Log.e("pppp", "${dataList.size}")
         recAdapter?.addItems(dataList)
     }
     private fun init(){

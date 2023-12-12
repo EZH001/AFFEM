@@ -16,10 +16,6 @@ class AssetCopier(var context: Context, var filenameA: String, var filenameB: St
     var b: File
 
     init {
-
-        //String path = context.getDataDir().getPath().toString() + "/databases/" + filenameB;
-        //b = new File(path);
-        // b = new File(context.getDataDir().getPath() + "/databases" + filenameB);
         b = context.getDatabasePath(filenameB)
         try {
             copyFromAssets(filenameA)

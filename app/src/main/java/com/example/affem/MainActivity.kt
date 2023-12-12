@@ -52,21 +52,23 @@ class MainActivity : AppCompatActivity() {
         val passwordText: EditText = findViewById(R.id.passwordLA)
         if (loginText.text.toString() == "" || passwordText.text.toString() == "")
             Toast.makeText(this, "Все поля должны быть заполнены", Toast.LENGTH_SHORT).show()
-        val login: String = loginText.text.toString().trim()
-        val password: String = passwordText.text.toString().trim()
-        val checkUser = mDBHelper!!.userExist(login, password)
-        if (checkUser){
-            Toast.makeText(this, "Успешно", Toast.LENGTH_SHORT).show()
-            val checkRole = mDBHelper!!.getRoleByLogin(login)
-                if (checkRole == "admin"){
-                    val intent  = Intent(this@MainActivity, AdminActivity::class.java)
-                    startActivity(intent)
+            else{
+                val login: String = loginText.text.toString().trim()
+                val password: String = passwordText.text.toString().trim()
+                val checkUser = mDBHelper!!.userExist(login, password)
+                if (checkUser){
+                    Toast.makeText(this, "Успешно", Toast.LENGTH_SHORT).show()
+                    val checkRole = mDBHelper!!.getRoleByLogin(login)
+                    if (checkRole == "admin"){
+                        val intent  = Intent(this@MainActivity, AdminActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        val intent = Intent(this@MainActivity, OperatorActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
-            else {
-                    val intent = Intent(this@MainActivity, OperatorActivity::class.java)
-                    startActivity(intent)
-            }
-        }
-        else Toast.makeText(this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show()
-    }
+                else Toast.makeText(this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show()
+        }}
+
 }

@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.os.Build
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -37,21 +36,21 @@ class DBHelper(context: Context) :
     private var mContext: Context? = null
     private var mNeedUpdate = false
 
-    private fun copyDataBase() {
-        if (!checkDataBase()) {
-            this.readableDatabase
-            close()
-            try {
-                copyDBFile()
-            } catch (mIOException: IOException) {
-                throw Error("ErrorCopyingDataBase")
-            }
-        }
-    }
-    private fun checkDataBase(): Boolean {
-        val dbFile = File(DB_PATH + DB_NAME)
-        return dbFile.exists()
-    }
+//    private fun copyDataBase() {
+//        if (!checkDataBase()) {
+//            this.readableDatabase
+//            close()
+//            try {
+//                copyDBFile()
+//            } catch (mIOException: IOException) {
+//                throw Error("ErrorCopyingDataBase")
+//            }
+//        }
+//    }
+//    private fun checkDataBase(): Boolean {
+//        val dbFile = File(DB_PATH + DB_NAME)
+//        return dbFile.exists()
+//    }
 
 //    @Throws(IOException::class)
 //    fun updateDataBase() {
@@ -62,17 +61,17 @@ class DBHelper(context: Context) :
 //            mNeedUpdate = false
 //        }
 //    }
-    @Throws(IOException::class)
-    private fun copyDBFile() {
-        val mInput = mContext!!.assets.open(DB_NAME)
-        val mOutput: OutputStream = FileOutputStream(DB_PATH + DB_NAME)
-        val mBuffer = ByteArray(1024)
-        var mLength: Int
-        while (mInput.read(mBuffer).also { mLength = it } > 0) mOutput.write(mBuffer, 0, mLength)
-        mOutput.flush()
-        mOutput.close()
-        mInput.close()
-    }
+//    @Throws(IOException::class)
+//    private fun copyDBFile() {
+//        val mInput = mContext!!.assets.open(DB_NAME)
+//        val mOutput: OutputStream = FileOutputStream(DB_PATH + DB_NAME)
+//        val mBuffer = ByteArray(1024)
+//        var mLength: Int
+//        while (mInput.read(mBuffer).also { mLength = it } > 0) mOutput.write(mBuffer, 0, mLength)
+//        mOutput.flush()
+//        mOutput.close()
+//        mInput.close()
+//    }
 
     @Synchronized
     override fun close() {
@@ -142,17 +141,11 @@ class DBHelper(context: Context) :
                 id = cursor.getInt(cursor.getColumnIndex("_id"))
                 title = cursor.getString(cursor.getColumnIndex("title"))
                 malf1 = cursor.getString(cursor.getColumnIndex("malf1"))
-
                 malf2 = cursor.getString(cursor.getColumnIndex("malf2"))
-
                 malf3 = cursor.getString(cursor.getColumnIndex("malf3"))
-
                 malf4 = cursor.getString(cursor.getColumnIndex("malf4"))
-
                 malf5 = cursor.getString(cursor.getColumnIndex("malf5"))
-
                 malf6 = cursor.getString(cursor.getColumnIndex("malf6"))
-
                 val item = ItemsViewModel(id = id, title = title, malf1 = malf1, malf2 = malf2,  malf3 = malf3,
                      malf4 = malf4, malf5 = malf5, malf6 = malf6)
                 dataList.add(item)

@@ -42,7 +42,6 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
         val items = itemsList[position]
         holder.bind(items)
         holder.enableCheckBoxes(isItemsEnabled)
-
         holder.binding.checkBoxList1.post {
             holder.binding.checkBoxList1.isChecked = items.isChecked1
         }
@@ -121,7 +120,7 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    fun saveDataToTextFile(context: Context, dataList: ArrayList<ItemsViewModel>) {
+        fun saveDataToTextFile(context: Context, dataList: ArrayList<ItemsViewModel>) {
         val fileName = getCurrentDate()
 
         try {
@@ -196,29 +195,3 @@ class RecAdapter(private val context: Context): RecyclerView.Adapter<RecAdapter.
         notifyDataSetChanged()
     }
     }
-
-
-
-
-
-
-
-
-
-
-/*binding.enableBtn.setOnClickListener {
-                binding.checkBoxList1.isEnabled = false
-                binding.checkBoxList2.isEnabled = false
-                binding.checkBoxList3.isEnabled = false
-                binding.checkBoxList4.isEnabled = false
-                binding.checkBoxList5.isEnabled = false
-                binding.checkBoxList6.isEnabled = false
-            }
-            binding.disBtn.setOnClickListener {
-                binding.checkBoxList1.isEnabled = true
-                binding.checkBoxList2.isEnabled = true
-                binding.checkBoxList3.isEnabled = true
-                binding.checkBoxList4.isEnabled = true
-                binding.checkBoxList5.isEnabled = true
-                binding.checkBoxList6.isEnabled = true
-            }*/
